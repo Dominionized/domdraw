@@ -1,4 +1,4 @@
-package ca.csf.domdraw_client;
+package ca.csf.domdraw.client;
 
 import ca.csf.simpleFx.SimpleFXApplication;
 import ca.csf.simpleFx.SimpleFXScene;
@@ -18,7 +18,7 @@ public class Main extends SimpleFXApplication {
 	public void start() {
 		// TODO Auto-generated method stub
 		try {
-			scene = new SimpleFXScene(this.getClass().getResource("Main.fxml"), new MainController());
+			SimpleFXScene scene = new SimpleFXScene(this.getClass().getResource("Main.fxml"), new MainController());
 			SimpleFXStage primaryStage = new SimpleFXStage("DomDraw", StageStyle.DECORATED, scene , this);
 			primaryStage.show();
 		} catch (IOException e) {

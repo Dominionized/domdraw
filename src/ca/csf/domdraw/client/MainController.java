@@ -1,4 +1,4 @@
-package ca.csf.domdraw_client;
+package ca.csf.domdraw.client;
 
 import ca.csf.simpleFx.SimpleFXController;
 
