@@ -16,12 +16,12 @@ public class Server {
 	private static final int DEFAULT_PORT = 4444;
 	private static final int DEFAULT_L33T_LEVEL = 30;
 
-	public void main(String[] args) {
-		if (args[0] == null) {
-			this.port = DEFAULT_PORT;
-		} else {
-			this.port = Integer.parseInt(args[0]);
-		}
+	public static void main(String[] args) {
+		/*if (args[0] == null) {*/
+			port = DEFAULT_PORT;
+		/*} else {
+			port = Integer.parseInt(args[0]);
+		}*/
 
 		try {
 			serverSocket = new ServerSocket(port);
