@@ -30,7 +30,7 @@
     </center>
     <bottom>
         <ToolBar fx:id="shapesMenuBar">
-            <Button fx:id="lineButton" text="Line">
+            <Button fx:id="lineButton" onAction="#setLine" text="Line">
                 <graphic>
                     <ImageView>
                         <image>
@@ -39,7 +39,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="squareButton" onAction="#addSquare" text="Square">
+            <Button fx:id="squareButton" onAction="#setSquare" text="Square">
                 <graphic>
                     <ImageView>
                         <image>
@@ -48,7 +48,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="ellipseButton" text="Ellipse">
+            <Button fx:id="ellipseButton" onAction="#setEllipse" text="Ellipse">
                 <graphic>
                     <ImageView>
                         <image>
