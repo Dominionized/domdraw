@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.csf.domdraw.client.MainController">
-	<!-- TODO Add Nodes -->
+    <top>
+        <ToolBar>
+            <TextField promptText="address">
+
+            </TextField>
+            <Label text=":"></Label>
+            <TextField promptText="port" prefWidth="50">
+
+            </TextField>
+            <Button text="Connect" onAction="#connectToServer">
+
+            </Button>
+        </ToolBar>
+    </top>
+    <center>
+        <Canvas fx:id="drawingCanvas" width="500" height="500">
+
+        </Canvas>
+    </center>
+    <bottom>
+        <ToolBar fx:id="shapesMenuBar">
+            <Button fx:id="lineButton" onAction="#setLine" text="Line">
+                <graphic>
+                    <ImageView>
+                        <image>
+                            <Image url="http://lorempixel.com/48/48"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="squareButton" onAction="#setSquare" text="Square">
+                <graphic>
+                    <ImageView>
+                        <image>
+                            <Image url="http://lorempixel.com/48/48"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="ellipseButton" onAction="#setEllipse" text="Ellipse">
+                <graphic>
+                    <ImageView>
+                        <image>
+                            <Image url="http://lorempixel.com/48/48"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </ToolBar>
+    </bottom>
+
+
 </BorderPane>
