@@ -11,14 +11,14 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.csf.domdraw.client.MainController">
     <top>
         <ToolBar >
-            <TextField fx:id="addressTextField" promptText="address">
+            <TextField fx:id="addressTextField" text="10.17.64.101" promptText="address">
 
             </TextField>
             <Label text=":"></Label>
-            <TextField fx:id="portTextField" promptText="port" prefWidth="70">
+            <TextField fx:id="portTextField" text="4444" promptText="port" prefWidth="70">
 
             </TextField>
-            <Button text="Connect" onAction="#connectToServer">
+            <Button text="Connect"  fx:id="connectButton" onAction="#connectToServer">
 
             </Button>
 
