@@ -7,8 +7,8 @@ public class ServerThreads implements Runnable{
 
     private Thread thread;
     private Socket socket;
-    private ObjectOutputStream _out;
-    private ObjectInputStream _in;
+    private PrintWriter _out;
+    private BufferedReader _in;
     private Server server;
     private int numClient=0;
 
@@ -17,8 +17,8 @@ public class ServerThreads implements Runnable{
         this.server = server;
 
         try{
-            _out = new ObjectOutputStream(socket.getOutputStream());
-            _in = new ObjectInputStream(socket.getInputStream());
+            _out = new PrintWriter(socket.getOutputStream());
+            _in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             numClient = server.addClient(_out);
         } catch(IOException e) {
             e.printStackTrace();
@@ -30,16 +30,23 @@ public class ServerThreads implements Runnable{
 
     public void run()
     {
-        Object object;
+        String message = "";
         System.out.println("Un nouveau client s'est connecté, no "+numClient);
         server.sendClientNumber(numClient);
         try
         {
-            while(true){
-                object = _in.readObject();
-                if(object != null) {
-                    server.sendAll(object);
-                    object = null;
+            char charCur[] = new char[1];
+            while(_in.read(charCur, 0, 1)!=-1){
+                if(charCur[0] != '\u0000' && charCur[0] != '\n' && charCur[0] != '\r'){
+                    message += charCur[0];
+                } else if(!message.equalsIgnoreCase("")){
+                    if(charCur[0]=='\u0000') {
+                        server.sendAll(message, "" + charCur[0], numClient);
+                    } else {
+                        server.sendAll(message,"", numClient);
+                    }
+                        System.out.println(message);
+                    message = "";
                 }
             }
         }

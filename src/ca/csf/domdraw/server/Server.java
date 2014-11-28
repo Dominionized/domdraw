@@ -1,7 +1,7 @@
 package ca.csf.domdraw.server;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
@@ -44,19 +44,19 @@ public class Server {
 		System.out.println("--------");
 	}
 
-	synchronized public void sendAll(Object object)
+	synchronized public void sendAll(String message, String sLast, int sendUser)
 	{
-		ObjectOutputStream out;
+		PrintWriter out;
 		for (int i = 0; i < serverThreads.size(); i++)
 		{
-			out = (ObjectOutputStream) serverThreads.elementAt(i);
+			if(i == sendUser){
+				continue;
+			}
+
+			out = (PrintWriter) serverThreads.elementAt(i);
 			if (out != null){
-				try{
-					out.writeObject(object);
-					System.out.println("Élément distribué à tout les clients");
-				} catch (IOException e){
-					e.printStackTrace();
-				}
+				out.println(message+sLast);
+				out.flush();
 			}
 		}
 	}
@@ -70,7 +70,7 @@ public class Server {
 		}
 	}
 
-	synchronized public int addClient(ObjectOutputStream out)
+	synchronized public int addClient(PrintWriter out)
 	{
 		nbrClient++;
 		serverThreads.addElement(out);
@@ -78,12 +78,9 @@ public class Server {
 	}
 
 	synchronized public void sendClientNumber(int clientNumber){
-		ObjectOutputStream out = (ObjectOutputStream) serverThreads.elementAt(clientNumber);
-		try {
-			out.write(clientNumber);
-		} catch( IOException e ){
-			e.printStackTrace();
-		}
+		PrintWriter out = (PrintWriter) serverThreads.elementAt(clientNumber);
+		out.println("Votre numéro de client est : "+clientNumber);
+		out.flush();
 	}
 
 	synchronized public int getNbClients(){

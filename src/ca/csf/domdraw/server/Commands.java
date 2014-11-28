@@ -27,6 +27,9 @@ public class Commands implements Runnable{
                 } else if(commandStr.equalsIgnoreCase("total")){
                     System.out.println("Nombre de clients : "+ server.getNbClients());
                     System.out.println("---------");
+                } else if(commandStr.equalsIgnoreCase("send")){
+                    server.sendAll(_in.readLine(), "\u0000", -1);
+                    System.out.println("Message envoyé");
                 } else {
                     System.out.println("Commande non-trouvée");
                 }
