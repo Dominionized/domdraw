@@ -10,17 +10,19 @@
 <?import javafx.scene.control.Label?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.csf.domdraw.client.MainController">
     <top>
-        <ToolBar>
-            <TextField promptText="address">
+        <ToolBar >
+            <TextField fx:id="addressTextField" promptText="address">
 
             </TextField>
             <Label text=":"></Label>
-            <TextField promptText="port" prefWidth="50">
+            <TextField fx:id="portTextField" promptText="port" prefWidth="70">
 
             </TextField>
             <Button text="Connect" onAction="#connectToServer">
 
             </Button>
+
+            <Button text="Disconnect" fx:id="disconnectButton" onAction="#disconnectFromServer" disable="true" />
         </ToolBar>
     </top>
     <center>
